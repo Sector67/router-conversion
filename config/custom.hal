@@ -1,0 +1,24 @@
+# Include your custom HAL commands here
+# This file will not be overwritten when you run PNCconf again
+#
+# Load a timedelay component to allow the spindle Z brake to stay on for a
+# short time after the machine is enabled
+
+loadrt timedelay count=2
+addf timedelay.0 servo-thread
+addf timedelay.1 servo-thread
+
+setp timedelay.0.on-delay 1.0
+setp timedelay.0.off-delay 0
+setp timedelay.1.on-delay 0
+setp timedelay.1.off-delay 1.0
+
+# This section will delay the brake release after machine enable
+net machine-is-enabled => timedelay.0.in => timedelay.1.in
+net z-brake <= timedelay.0.out
+
+# This section will delay the amp disable after machine disable
+# TODO: test if we actually need this
+# Spindle_Z_Brake is named in pncconf as a custom signal
+# To get a delay on shutdown, we need to replace:
+# net z-enable        =>  pid.z.enable

@@ -234,7 +234,7 @@
   <property name="halui_cmd7" type="string" value=""/>
   <property name="halui_cmd8" type="string" value=""/>
   <property name="halui_cmd9" type="string" value=""/>
-  <property name="help" type="string" value="help-axisconfig.txt"/>
+  <property name="help" type="string" value="help-axismotor.txt"/>
   <property name="homeboth" type="bool" value="False"/>
   <property name="homeindex" type="bool" value="False"/>
   <property name="homenone" type="bool" value="True"/>
@@ -326,14 +326,14 @@
   <property name="mesa0c1pin15" type="string" value="unused-input"/>
   <property name="mesa0c1pin15inv" type="bool" value="False"/>
   <property name="mesa0c1pin15type" type="string" value="GPIO Input"/>
-  <property name="mesa0c1pin16" type="string" value="unused-output"/>
-  <property name="mesa0c1pin16inv" type="bool" value="False"/>
+  <property name="mesa0c1pin16" type="string" value="coolant-flood"/>
+  <property name="mesa0c1pin16inv" type="bool" value="True"/>
   <property name="mesa0c1pin16type" type="string" value="GPIO Output"/>
   <property name="mesa0c1pin17" type="string" value="z-brake"/>
   <property name="mesa0c1pin17inv" type="bool" value="True"/>
   <property name="mesa0c1pin17type" type="string" value="GPIO Output"/>
-  <property name="mesa0c1pin18" type="string" value="unused-output"/>
-  <property name="mesa0c1pin18inv" type="bool" value="False"/>
+  <property name="mesa0c1pin18" type="string" value="spindle-cw"/>
+  <property name="mesa0c1pin18inv" type="bool" value="True"/>
   <property name="mesa0c1pin18type" type="string" value="GPIO Output"/>
   <property name="mesa0c1pin19" type="string" value="unused-output"/>
   <property name="mesa0c1pin19inv" type="bool" value="False"/>

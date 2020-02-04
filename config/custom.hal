@@ -4,14 +4,24 @@
 # Load a timedelay component to allow the spindle Z brake to stay on for a
 # short time after the machine is enabled
 
-loadrt timedelay count=2
+loadrt timedelay count=3
+loadrt not count=1
 addf timedelay.0 servo-thread
 addf timedelay.1 servo-thread
+addf timedelay.2 servo-thread
+addf not.0 servo-thread
 
+# delay for the Z brake to release
 setp timedelay.0.on-delay 1.0
 setp timedelay.0.off-delay 0
+
+# delay for the Z motor to disable (currently unused)
 setp timedelay.1.on-delay 0
 setp timedelay.1.off-delay 1.0
+
+# fixed delay for the spindle startup 
+setp timedelay.2.on-delay 3.0
+setp timedelay.2.off-delay 0
 
 # This section will delay the brake release after machine enable
 net machine-is-enabled => timedelay.0.in => timedelay.1.in
@@ -22,3 +32,8 @@ net z-brake <= timedelay.0.out
 # Spindle_Z_Brake is named in pncconf as a custom signal
 # To get a delay on shutdown, we need to replace:
 # net z-enable        =>  pid.z.enable
+
+# This section will delay spindle startup for a fixed amount of time
+net spindle-enable => timedelay.2.in
+net spindle-timer <= timedelay.2.out
+net spindle-timer => spindle.0.at-speed
